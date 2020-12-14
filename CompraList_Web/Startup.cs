@@ -1,45 +1,78 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Owin;
+using Microsoft.Owin;
+
+[assembly: OwinStartup(typeof(CompraList_Web.Startup))]
+
 
 namespace CompraList_Web
 {
     public class Startup
     {
+
+        public void Configuration(IAppBuilder app)
+        {
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR();
+        }
+
+    
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-
-        }
-
-        public IConfiguration Configuration { get; }
+        public Microsoft.AspNetCore.Hosting.IHostingEnvironment Environment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddRazorPages();
+            services.AddMvc();
             services.AddSignalR();
         }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
+            Environment = env;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
+
+            app.UseFileServer();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            //app.UseRouting();
+
+            //app.UseAuthorization();
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}"
+            //        );
+
+            //    routes.MapRoute(
+            //      name: "areas",
+            //      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            //    );
+            //});
+
+            app.UseMvcWithDefaultRoute();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapHub<ChatHub>("/chathub");
+            //});
         }
     }
 }

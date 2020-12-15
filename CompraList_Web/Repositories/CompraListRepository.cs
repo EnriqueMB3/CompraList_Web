@@ -64,7 +64,14 @@ namespace CompraList_Web.Repositories
                 listErrors.Add("Ya existe un item con este nombre");
 
             }
-            return listErrors;
+            if (listErrors.Count > 0)
+            {
+                return listErrors;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<string> ValidateItemRemove(int id)
@@ -75,7 +82,14 @@ namespace CompraList_Web.Repositories
             {
                 listErrors.Add("El Item que desea eliminar no existe");
             }
-            return listErrors;
+            if (listErrors.Count > 0)
+            {
+                return listErrors;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

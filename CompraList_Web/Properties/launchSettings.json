@@ -1,14 +1,14 @@
 {
   "iisSettings": {
-    "windowsAuthentication": false,
+    "windowsAuthentication": true,
     "anonymousAuthentication": true,
     "iis": {
       "applicationUrl": "http://localhost/CompraList_Web",
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:55399",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:51001",
+      "sslPort": 44349
     }
   },
   "profiles": {
@@ -17,7 +17,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "sqlDebugging": false
     },
     "CompraList_Web": {
       "commandName": "Project",

@@ -4,16 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using CompraList_Web.Models;
-using CompraList_Web.Models;
-
+using CompraList_Web.Repositories;
 
 namespace CompraList_Web.Hubs
 {
     public class CompraListHub:Hub
     {
-        public async Task SendMessage(string user, string message)
+
+        CompraListRepository compraListRepository = new CompraListRepository();
+        //public async Task SendMessage(string user, string message)
+        //{
+
+        //    await Clients.All.SendAsync("ReceiveMessage", compraListRepository.GetItems());
+        //}
+
+        public async Task SyncronizeItems()
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", compraListRepository.GetItems());
+
         }
+
     }
 }

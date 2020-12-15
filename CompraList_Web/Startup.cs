@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Owin;
 using Microsoft.Owin;
+using CompraList_Web.Hubs;
 
 [assembly: OwinStartup(typeof(CompraList_Web.Startup))]
 
@@ -51,28 +52,13 @@ namespace CompraList_Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseRouting();
-
-            //app.UseAuthorization();
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}"
-            //        );
-
-            //    routes.MapRoute(
-            //      name: "areas",
-            //      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            //    );
-            //});
-
             app.UseMvcWithDefaultRoute();
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapHub<ChatHub>("/chathub");
-            //});
+            app.UseSignalR(route =>
+            {
+                //route.MapHub<ChatHub>("/chatHub");
+                route.MapHub<CompraListHub>("/compraListHub");
+
+            });
         }
     }
 }

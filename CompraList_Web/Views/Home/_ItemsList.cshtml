@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<CompraList_Web.Models.Item>
+
+
+
+<ul class="list-group list-group-flush">
+
+    @if (Model != null)
+    {
+
+        @foreach (var item in Model)
+        {
+
+            <li class="list-group-item row">
+                <!-- Default checked -->
+                <div class="custom-control custom-checkbox">
+                    <input class="form-check-input " type="checkbox" checked="@item.Listo" onclick="ChangeStatus(@item.Id)">
+                    <label class="form-check-label col-10" for="defaultCheck1">
+                        @item.Nombre
+                    </label>
+                    <span class="badge badge-pill badge-warning">@item.QuienAgrego</span>
+                </div>
+            </li>
+        }
+    }
+    else
+    {
+<li>
+    <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</li>
+       
+    }
+</ul>

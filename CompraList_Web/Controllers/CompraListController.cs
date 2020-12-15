@@ -55,7 +55,7 @@ namespace CompraList_Web.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         public IActionResult ChangeItemStatus(int id)
         {
             try

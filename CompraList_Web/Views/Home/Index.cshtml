@@ -7,32 +7,40 @@
 <div class="container">
 
     <div>
-        <form>
+        <form id="formItems">
             <div class="form-row align-items-center">
                 <div class="col-sm-3 my-1">
                     <label class="sr-only" for="inlineFormInputName">Name</label>
-                    <input type="text" class="form-control" id="inlineFormInputName" placeholder="Item">
+                    <input type="text" class="form-control" id="inItem" required placeholder="Item">
                 </div>
-                <div class="col-sm-3 my-1">
-                    <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">XD</div>
-                        </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
-                    </div>
-                </div>
+                <select class="form-control col-sm-3 my-1" required id="cmbQuienAgrego" aria-label="Default select example">
+                    <option value="Anonimo" selected>Anonimo</option>
+                    <option value="Papá">Papá</option>
+                    <option value="Mamá">Mamá</option>
+                    <option value="Hijo">Hijo</option>
+                    <option value="Hijo dos">Hijo dos</option>
+
+                    <option value="Hija dos">Hija</option>
+                    <option value="Macota">Mascota</option>
+                    <option value="Abuelo">Abuelo</option>
+                    <option value="Abuela">Abuela</option>
+
+
+                </select>
                 <div class="col-auto my-1">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="InsertItem()" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
     </div>
      
 
-        <div id="ToDoItems" >
-
-        </div>
+    <div id="ToDoItems">
+            <div class="loader spinner-border text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+     
+    </div>
   
 </div>
 
@@ -58,6 +66,7 @@
     });
 
     function FetchEmployees() {
+        $(".loader").show();
         var model = $('#ToDoItems');
         $.ajax({
             url: '/home/GetAllItems',
@@ -65,11 +74,14 @@
             type: 'GET',
             dataType: 'html'
         })
-            .success(function (result) { model.empty().append(result); })  
+            .success(function (result) {
+                $(".loader").hide();
+
+                model.empty().append(result);
+            })  
     }
 
     function ChangeStatus(id) {
-        console.log(id);
         $.ajax({
             url: '/home/ChangeStatus/' + id,
             type: 'POST',
@@ -83,9 +95,56 @@
                 alert('Employee could not be updated');
             }
         });
-     
     }
 
+    function DeleteItem(id) {
+        $.ajax({
+            url: '/home/DeleteItem/' + id,
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                connection.invoke("SyncronizeItems").catch(function (err) {
+                    return console.error(err.toString());
+                });
+            },
+            error: function (e) {
+                alert('Employee could not be updated');
+            }
+        });
+    }
+
+   
+
+    function InsertItem(e) {
+        let item = {
+            Nombre: $('#inItem').val(),
+            QuienAgrego: $('#cmbQuienAgrego').val(),
+            Listo: false
+        };
+        console.log(item);
+
+        if (item.Nombre.trim().length <= 1) {
+            return;
+        }
+
+        $.ajax({
+            url: '/home/CreateItem',
+            type: 'POST',
+            data: JSON.stringify(item),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                document.getElementById('inItem').value = ''
+                connection.invoke("SyncronizeItems").catch(function (err) {
+                    return console.error(err.toString());
+                });
+            },
+            error: function (e) {
+                alert('Employee could not be updated');
+            }
+        });
+    }
+
+ 
 </script>
 
 

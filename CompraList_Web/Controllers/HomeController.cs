@@ -72,5 +72,29 @@ namespace CompraList_Web.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+
+        public ActionResult DeleteItem(int id)
+        {
+            try
+            {
+                CompraListRepository compraListRepository = new CompraListRepository();
+                var result = compraListRepository.ValidateItemRemove(id);
+
+                if (result != null)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, result);
+                }
+
+                compraListRepository.DeleteItem(id);
+
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace CompraList_Web.Repositories
         {
             Item item = compralistContext.Item.FirstOrDefault(x => x.Id == id);
             compralistContext.Remove(item);
+            compralistContext.SaveChanges();
+
         }
 
         public List<string> ValidateItem(Item item)
@@ -47,7 +49,14 @@ namespace CompraList_Web.Repositories
             {
                 listErrors.Add("Ya existe un item con este nombre");
             }
-            return listErrors;
+            if (listErrors.Count > 0)
+            {
+                return listErrors;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<string> ValidateItemStatus(int id)
@@ -91,5 +100,7 @@ namespace CompraList_Web.Repositories
                 return null;
             }
         }
+
+      
     }
 }

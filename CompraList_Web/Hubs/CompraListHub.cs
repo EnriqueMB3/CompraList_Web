@@ -12,11 +12,6 @@ namespace CompraList_Web.Hubs
     {
 
         CompraListRepository compraListRepository = new CompraListRepository();
-        //public async Task SendMessage(string user, string message)
-        //{
-
-        //    await Clients.All.SendAsync("ReceiveMessage", compraListRepository.GetItems());
-        //}
 
         public async Task SyncronizeItems()
         {

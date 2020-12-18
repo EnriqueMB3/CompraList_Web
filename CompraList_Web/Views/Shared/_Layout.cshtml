@@ -6,23 +6,45 @@
     <title>@ViewData["Title"] - SingleREjemplo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="~/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/styles/styles.css" />
+    @*<link rel="stylesheet" href="~/styles/styles.css" />*@
+    <link rel="stylesheet" href="~/styles/style.css" />
 
 </head>
-<body>
+<body id="body" onload="ChangeTheme()">
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">CompraList</a>
+                </div>
+            </nav>
+        </header>*@
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">CompraList</a>
+        <nav class="navbar navbar-light bg-light box-shadow mb-3" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/images/icon.svg" alt="icon" class="d-inline-block align-top">
+                    <span class="navbar-brand mb-0 h1" id="title">CompraList</span>
+                </a>
+
+                <div class="toogle-theme">
+                    <div>
+                        <input type="checkbox" id="toogle" onclick="ChangeTheme()" /><label for="toogle"></label>
+                    </div>
+                    <img src="~/images/theme.png" alt="theme">
+                </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-lg">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+
+
     <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/main.js"></script>
     @*<script src="/Scripts/bootstrap.js"></script>*@
     @RenderSection("scripts", required: false)
 </body>

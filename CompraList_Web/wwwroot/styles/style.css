@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#body { background-color: #FFFFFF; }
+
+
+
+#navbar { background-color: #F8F9FA; }
+nav > div > a img {
+    height: 40px;
+    width: 40px;
+}
+nav > div > a #title {
+    color: #303030;
+    font-size: x-large;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.toogle-theme { display: block; }
+.toogle-theme div { display: inline-block; }
+.toogle-theme label {
+    height: 20px;
+    width: 60px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    transition: background 150ms linear;
+}
+.toogle-theme input[type="checkbox"] { display: none; }
+.toogle-theme label::before {
+    height: 15px;
+    width: 15px;
+    background-image: linear-gradient(0deg,#ccc,#eee);
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.6);
+    content: '';
+    position: absolute;
+    top: 2px;
+    transition: left 300ms ease-out;
+}
+.toogle-theme input+label { background-color: #FDFFB6; }
+.toogle-theme input+label::before { left: 5px; }
+.toogle-theme input:checked + label { background-color: #023047; }
+.toogle-theme input:checked+label::before { left: 40px; }
+.toogle-theme img {
+    height: 25px;
+    width: 25px;
+}
+
+
+
+#quien-agrega {
+    color: #000000;
+    display: block;
+    font-size: larger;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+#txtQuienAgrego {
+    font-size: medium;
+    margin-bottom: 10px;
+}
+.add-item {
+    display: grid;
+    grid-template-columns: 14fr 1fr;
+    margin-bottom: 15px;
+}
+.add-item input[type="text"] {
+    width: 99%;
+    font-size: medium;
+}
+.add-item button { font-size: medium; }
+
+
+
+#ul-items {
+    color: #303030;
+    padding-left: 20px;
+}
+#ul-items li { padding: 7.5px 0; }
+.item-list {
+    display: grid;
+    font-size: medium;
+    grid-template-columns: 80% 17% 3%;
+}
+.item-list span {
+    display: block;
+    margin: 0 5px;
+}
+.item-list i {
+    cursor: pointer;
+    display: block;
+    margin: 3px auto;
+}
+
+
+
+/* -------------------------------------- RESPONSIVE -------------------------------------- */
+@media (max-width: 479px)
+{
+    nav > div > a img {
+        height: 25px;
+        width: 25px;
+    }
+    nav > div > a #title {
+        font-size: medium;
+        margin-left: 0;
+    }
+    .toogle-theme img {
+        height: 20px;
+        width: 20px;
+    }
+
+    #txtQuienAgrego,
+    .add-item input[type="text"],
+    .add-item button {
+        font-size: small;
+    }
+
+    .item-list {
+        font-size: small;
+        grid-template-columns: 50% 45% 5%;
+    }
+}
+@media (min-width: 480px) and (max-width: 767px)
+{
+    .item-list { grid-template-columns: 70% 25% 5%; }
+}

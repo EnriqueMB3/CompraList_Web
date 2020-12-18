@@ -1,30 +1,44 @@
 ﻿
 @model IEnumerable<CompraList_Web.Models.Item>
 
+<ul id="ul-items">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="item-list">
+                <div>
+                    <input class="form-check-input " type="checkbox" checked="@item.Listo" onclick="ChangeStatus(@item.Id)">
+                    <label class="form-check-label" for="defaultCheck1">@item.Nombre</label>
+                </div>
+                <span class="badge badge-pill badge-primary">@item.QuienAgrego</span>
+                <i class="fas fa-trash-alt trash" onclick="DeleteItem(@item.Id)"></i>
+            </div>
+        </li>
+    }
+</ul>
 
-
-<ul class="list-group list-group-flush">
+<!--<ul class="list-group list-group-flush">
 
   
 
-        @foreach (var item in Model)
+        foreach (var item in Model)
         {
 
-            <li class="list-group-item row">
+            <li class="list-group-item row">-->
                 <!-- Default checked -->
-                <div class="custom-control custom-checkbox">
-                    <input class="form-check-input " type="checkbox" checked="@item.Listo" onclick="ChangeStatus(@item.Id)">
+                <!--<div class="custom-control custom-checkbox">
+                    <input class="form-check-input " type="checkbox" checked="item.Listo" onclick="ChangeStatus(item.Id)">
                     <label class="form-check-label" for="defaultCheck1">
-                        @item.Nombre
+                        item.Nombre
                     </label>
-                    <span class="badge badge-pill badge-warning ">@item.QuienAgrego</span>
+                    <span class="badge badge-pill badge-warning ">item.QuienAgrego</span>
          
-                    <i class="fas fa-trash-alt trash" onclick="DeleteItem(@item.Id)"></i>
+                    <i class="fas fa-trash-alt trash" onclick="DeleteItem(item.Id)"></i>
 
               
                 </div>
             </li>
         }
  
-</ul>
+</ul>-->
 

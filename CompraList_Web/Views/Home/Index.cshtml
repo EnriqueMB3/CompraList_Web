@@ -5,6 +5,25 @@
 }
 
 <div class="container">
+    <span id="quien-agrega">Quien agrega</span>
+
+    <form id="formItems">
+
+        <input type="text" class="form-control" id="txtQuienAgrego" required placeholder="Nombre">
+        <div class="add-item">
+            <input type="text" class="form-control" id="inItem" required placeholder="Item">
+            <button type="button" onclick="InsertItem()" class="btn btn-primary">Añadir</button>
+        </div>
+    </form>
+
+    <div id="ToDoItems">
+        <div class="loader spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
 
     <div>
         <form id="formItems">
@@ -42,7 +61,7 @@
      
     </div>
   
-</div>
+</div>*@
 
 
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
@@ -118,7 +137,7 @@
     function InsertItem(e) {
         let item = {
             Nombre: $('#inItem').val(),
-            QuienAgrego: $('#cmbQuienAgrego').val(),
+            QuienAgrego: $('#txtQuienAgrego').val(),
             Listo: false
         };
         console.log(item);

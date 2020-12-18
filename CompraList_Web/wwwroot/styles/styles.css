@@ -1,9 +1,0 @@
-﻿.trash {
-    color: #CED4DA;
-    font-size:small;
-}
-
-    .trash:hover {
-        cursor: pointer;
-        color: #DC3545;
-    }   

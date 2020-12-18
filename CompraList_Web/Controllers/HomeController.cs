@@ -23,6 +23,14 @@ namespace CompraList_Web.Controllers
             return PartialView("_ItemsList", compra.GetItems());
         }
 
+        [HttpGet]
+        public ActionResult GetItemsAll()
+        {
+            CompraListRepository compra = new CompraListRepository();
+
+            return Ok(compra.GetItems());
+        }
+
         [HttpPost]
         public IActionResult CreateItem([FromBody] Item item)
         {

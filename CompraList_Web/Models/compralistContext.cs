@@ -22,7 +22,9 @@ namespace CompraList_Web.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost; user id=root; password=root; database=compralist;");
+                optionsBuilder.UseMySql("server=204.93.216.11; user id=itesrcne_compral; password=kAfeA3wjWYY@UEs; database=itesrcne_compralist;");
+
+                //optionsBuilder.UseMySql("server=localhost; user id=root; password=root; database=compralist;");
             }
         }
 

@@ -16,7 +16,6 @@ namespace CompraList_Web.Hubs
         public async Task SyncronizeItems()
         {
             await Clients.All.SendAsync("ReceiveMessage", compraListRepository.GetItems());
-
         }
 
     }

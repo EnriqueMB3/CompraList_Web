@@ -111,7 +111,8 @@
                 });
             },
             error: function (e) {
-                alert('Employee could not be updated');
+                alert(e.responseJSON[0]);
+
             }
         });
     }
@@ -127,7 +128,8 @@
                 });
             },
             error: function (e) {
-                alert('Employee could not be updated');
+                alert(e.responseJSON[0]);
+
             }
         });
     }
@@ -158,7 +160,7 @@
                 });
             },
             error: function (e) {
-                alert('Employee could not be updated');
+                alert(e.responseJSON[0]);
             }
         });
     }
